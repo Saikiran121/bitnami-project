@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: budget-analyzer
+  namespace: budget-app
+  labels:
+    app: budget-analyzer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: budget-analyzer
+  template:
+    metadata:
+      labels:
+        app: budget-analyzer
+    spec:
+      containers:
+      - name: budget-analyzer
+        image: saikiran8050/budget-analyzer:v1 
+        ports:
+        - containerPort: 5000
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: budget-secrets
+              key: DB_PASSWORD
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: budget-secrets
+              key: DB_HOST
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: budget-secrets
+              key: DB_USER
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              name: budget-secrets
+              key: DB_PORT
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: budget-secrets
+              key: API_KEY

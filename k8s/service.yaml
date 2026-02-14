@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: budget-analyzer-service
+  namespace: budget-app
+spec:
+  selector:
+    app: budget-analyzer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
