@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Saikiran121/bitnami-project.git
     targetRevision: HEAD
-    path: bitnami-project/k8s
+    path: k8s/
   destination:
     server: https://kubernetes.default.svc
     namespace: budget-app
